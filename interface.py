@@ -2,7 +2,7 @@ import pygame
 import location
 import numpy
 from location import *
-
+from playsound import playsound
 
 pygame.init()
 
@@ -24,6 +24,15 @@ def launcher():
     "wojak" : pygame.image.load("/Users/admin/programmation/depot_git/slot_machine/assets_slot_machine/wojak.png"),
     "dicaprio" : pygame.image.load("/Users/admin/programmation/depot_git/slot_machine/assets_slot_machine/dicaprio.png"),
     "dogecoin" : pygame.image.load("/Users/admin/programmation/depot_git/slot_machine/assets_slot_machine/dogecoin.png"),
+}
+    
+    meme_dict_sound = {
+        
+    "risitas" : pygame.mixer.Sound("/Users/admin/programmation/depot_git/slot_machine/sound_effects/risitas.mp3"),
+    "pepe" : pygame.mixer.Sound("/Users/admin/programmation/depot_git/slot_machine/sound_effects/just_do_it.mp3"),
+    "wojak" : pygame.mixer.Sound("/Users/admin/programmation/depot_git/slot_machine/sound_effects/wouaaaaa.mp3"),
+    "dicaprio" : pygame.mixer.Sound("/Users/admin/programmation/depot_git/slot_machine/sound_effects/lol.mp3"),
+    "dogecoin" : pygame.mixer.Sound("/Users/admin/programmation/depot_git/slot_machine/sound_effects/Thug Life.mp3"),
 }
     
     memes_dict = {
@@ -49,9 +58,10 @@ def launcher():
 
     if random_selected_three[0] == random_selected_three[1] == random_selected_three[2]:
         token = memes_dict[random_selected_three[0]]
+        sound = meme_dict_sound[random_selected_three[0]]
         tokens = tokens + token
         print(f"Congratulations, you have won {token} tokens")
-        
+        sound.play()
         
     else:
         print("You didn't win any token!")
@@ -63,7 +73,8 @@ width_screen = 1000
 screen = pygame.display.set_mode((width_screen, 650))
 pygame.display.set_caption("Meme Slot Machine!")
 black = [0, 0 ,0]
-white = [255, 0, 255]
+white = [255, 255, 255]
+green = [18, 164, 81]
 tokens = 1000
 
 #creation of the text for the token quantity 
@@ -81,7 +92,7 @@ App_ON = True
 while App_ON:
     
     #load color of the screen
-    screen.fill(black)
+    screen.fill(green)
     screen.blit(slot_machine, (location.slot_x, location.slot_y))#tuple to indicate position
     location.locations.draw(screen)
     screen.blit(score, (232, 320))
