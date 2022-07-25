@@ -17,6 +17,7 @@ def launcher():
     proba_meme = [0.4, 0.25, 0.2, 0.1, 0.05]# =1
     
     
+    
     meme_dict_img = {
         
     "risitas" : pygame.image.load("/Users/admin/programmation/depot_git/slot_machine/assets_slot_machine/risitas.png"),
@@ -62,7 +63,8 @@ def launcher():
         tokens = tokens + token
         print(f"Congratulations, you have won {token} tokens")
         sound.play()
-        
+        #if sound.play():
+            
     else:
         print("You didn't win any token!")
         
@@ -76,6 +78,8 @@ black = [0, 0 ,0]
 white = [255, 255, 255]
 green = [18, 164, 81]
 tokens = 1000
+background_sound = pygame.mixer.Sound("sound_effects/background_sound.mp3")
+background_sound.play()
 
 #creation of the text for the token quantity 
 font = pygame.font.SysFont(None, 32)
